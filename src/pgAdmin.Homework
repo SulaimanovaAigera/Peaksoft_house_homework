@@ -1,0 +1,62 @@
+create table costomers(
+	id serial primary key,
+	first_name varchar not null,
+	last_name varchar,
+	age int check(age>17),
+	email varchar,
+	nation varchar,
+	hotelId int references hotels(id),
+	monthId int references months(id)
+);
+
+alter table costomers add column phone_number varchar;
+drop table costomers;
+insert into costomers(first_name,last_name,age,email,nation,hotelId,monthId,phone_number)
+values('Aigerim','Sulaimanova',29,'aigerim@gmail.com','kyrgyz',1,7,'0555347398'),
+	('Aisuluu','Kubanuchbekova',19,'aisuluu@gmail.com','kyrgyz',2,10,'0777546734');
+
+create table hotels(
+	id serial primary key,
+	name varchar(15)unique,
+	cityId int references citys(id)
+
+
+);
+drop table hotels;
+
+insert into hotels(name,cityId)
+values('Mumbai',2),
+	('Dostyk',1),
+	('Dasmia',2);
+
+create table citys(
+	id serial primary key,
+	name varchar not null
+);
+insert into citys(name)
+values('Bishkek'),
+('New-York'),
+('Moscow');
+
+create table months(
+	id serial primary key,
+	name varchar unique,
+	season_name varchar not null
+);
+
+insert into months(name,season_name)
+values('january','winter'),
+('february','winter'),
+('march','spring'),
+('april','spring'),
+('may','spring'),
+('june','summer'),
+('july','summer'),
+('aguest','summer'),
+('september','autumn'),
+('october','autumn'),
+('november','autumn'),
+('december','winter');
+
+
+
